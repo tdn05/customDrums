@@ -1,0 +1,38 @@
+
+/*Home page features*/
+
+    /*background picture*/
+body.mainIndex {
+    background-image: url('https://images.alphacoders.com/106/106181.jpg');
+    background-size: cover;
+    font-family: 'Poiret One', cursive;
+}
+
+    /*Customization of the home header*/
+.homeHeader {
+    padding-top: 85px;
+    padding-left: 15px;
+    font-size: 68px;
+    opacity: .6;
+}
+
+a.homeLink{
+    color: black;
+}
+
+a.homeLink:hover, a.homeLink:focus {
+    color: #4c4c4c;
+    text-decoration: none;
+    opacity: .6;
+
+}
+
+a.homeLink::before{
+    position: absolute;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+a.homeLink:hover::before, a.homeLink:focus::before {
+    transform: scale(0.9);
+	opacity: 0;
+}

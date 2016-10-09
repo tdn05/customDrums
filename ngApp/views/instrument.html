@@ -1,0 +1,8 @@
+<h1>Instrument list</h1>
+
+<ul>
+    <li ng-repeat='i in vm.instruments'>
+        {{i.brand}} - {{i.make}}
+        <img ng-src="{{i.imgUrl}}" alt="" />
+    </li>
+</ul>

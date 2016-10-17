@@ -1,9 +1,10 @@
 namespace creativedrums {
 
-    angular.module('creativedrums', ['ui.router', 'ngResource', 'ui.bootstrap']).config((
+    angular.module('creativedrums', ['ui.router', 'ngResource', 'ui.bootstrap', 'youtube-embed', 'yaru22.angular-timeago']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
-        $locationProvider: ng.ILocationProvider
+        $locationProvider: ng.ILocationProvider,
+        $httpProvider: ng.IHttpProvider
     ) => {
         // Define routes
         $stateProvider
@@ -25,6 +26,42 @@ namespace creativedrums {
                 controller: creativedrums.Controllers.InstrumentController,
                 controllerAs: 'vm'
             })
+            .state('login', {
+                url: '/login',
+                templateUrl: '/ngApp/views/login.html',
+                controller: creativedrums.Controllers.LoginController,
+                controllerAs: 'vm'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: '/ngApp/views/register.html',
+                controller: creativedrums.Controllers.RegisterController,
+                controllerAs: 'vm'
+            })
+            .state('brand', {
+                url: '/brand',
+                templateUrl: '/ngApp/views/drumBrand.html',
+                controller: creativedrums.Controllers.BrandController,
+                controllerAs: 'vm'
+            })
+            .state('instrumentDetails', {
+                url: '/instrumentDetails/:id',
+                templateUrl: '/ngApp/views/instrumentDetails.html',
+                controller: creativedrums.Controllers.InstrumentDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('account', {
+                url: '/account',
+                templateUrl: '/ngApp/views/account.html',
+                controller: creativedrums.Controllers.UserController,
+                controllerAs: 'vm'
+            })
+            .state('editInstrument', {
+                url: '/editInstrument/:id',
+                templateUrl: '/ngApp/views/editInstrument.html',
+                controller: creativedrums.Controllers.EditInstrumentController,
+                controllerAs: 'vm'
+            })
             .state('notFound', {
                 url: '/notFound',
                 templateUrl: '/ngApp/views/notFound.html'
@@ -35,8 +72,28 @@ namespace creativedrums {
 
         // Enable HTML5 navigation
         $locationProvider.html5Mode(true);
+
+        $httpProvider.interceptors.push("BearerAuthInterceptor");
+
     });
 
+    angular.module('creativedrums').factory('BearerAuthInterceptor',
+   ($window:ng.IWindowService, $q:ng.IQService)=>{
+       return {
+           request: function(config){
+               config.headers = config.headers || {};
 
+               if($window.localStorage.getItem('token')){
+                   config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
+               }
+               return config || $q.when(config);
+           },
+           response: function(response){
+               if(response.status === 401) {
 
+               }
+               return response || $q.when(response);
+           }
+       }
+   });
 }

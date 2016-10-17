@@ -1,11 +1,14 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
+import * as mongodb from 'mongodb';
 import Brand from '../models/brand';
+import Instrument from '../models/instrument';
 
 let brandRoute = express.Router();
+let ObjectId = mongodb.ObjectID;
 
 brandRoute.get('/', (req,res)=>{
-    Brand.find().then((brands)=>{
+    Brand.find().populate('instrument').then((brands)=>{
         res.send(brands)
     }).catch((err)=>{
         res.sendStatus(err)
@@ -37,4 +40,17 @@ brandRoute.post('/', (req,res)=>{
     })
 });
 
-//add review to brand
+//add instrument to brand
+brandRoute.post('/instrument/:brandId', (req,res)=>{
+    let instId = new ObjectId(req.body._id);
+    let brandId = new ObjectId(req.params['brandId']);
+
+    Brand.update({_id: brandId}, {$push: {instrument: instId}}).then((brand)=>{
+        res.send(brand);
+        console.log('instrument added successfully');
+    }).catch((err)=>{
+        res.status(400).send(err);
+    })
+});
+
+export default brandRoute;

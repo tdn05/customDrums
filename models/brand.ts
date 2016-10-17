@@ -3,10 +3,10 @@ import * as Review from './review';
 import * as Rating from './rating';
 import * as Instrument from './instrument';
 
-interface IBrand extends mongoose.Document{
+export interface IBrand extends mongoose.Document{
     brand: string;
-    instrument: Instrument.IInstrument[];
     imgUrl: string;
+    instrument: Instrument.IInstrument[];
     description: string;
     reviews: Review.IReview[];
     rating: Rating.IRating[];

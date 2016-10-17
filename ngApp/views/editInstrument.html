@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+            <form class="form-horizontal" ng-submit="vm.editInstrument()">
+                <fieldset>
+                    <div class="panel-heading">
+                        <h3>Edit Instrument</h3>
+                    </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="Brand" class="col-md-2 control-label">Brand</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name" value="" ng-model="vm.instrument.brand">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Make" class="col-md-2 control-label">Make</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name" value="" ng-model="vm.instrument.make">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullDescription" class="col-md-2 control-label">Descrition</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name" value="" ng-model="vm.instrument.fullDescription">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price" class="col-md-2 control-label">Price</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name" value="" ng-model="vm.instrument.price">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sampleVid" class="col-md-2 control-label">Youtube Link</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name" value="" ng-model="vm.instrument.sampleVid">
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: right">
+                                <button type="submit" class="btn btn-success btn-md"name="button">Save Edit</button>
+                                <button type="button" class="btn btn-danger btn-md" ng-click="vm.cancelEdit()" name="button">Cancel</button>
+                            </div>
+                        </div>
+                    </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,21 +1,25 @@
 import * as mongoose from 'mongoose';
 import * as jwt from 'jsonwebtoken';
-const crypto:any = require('crypto-js');
+const crypto:any =  require('crypto-js');
 
-interface IUser extends mongoose.Document {
+export interface IUser extends mongoose.Document {
     username: string,
     password: string,
     email: string,
-    admin: boolean,
+    admin: boolean
     setPassword(password),
     validatePassword(password),
     generateToken()
 }
 
-let userSchema =  new mongoose.Schema({
+let userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        trim: true,
+        set: function(value:string){
+            return value.toLowerCase().trim();
+        }
     },
     password: {
         type: String,
@@ -23,7 +27,7 @@ let userSchema =  new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: true
     },
     admin: {
         type: Boolean,
@@ -31,7 +35,8 @@ let userSchema =  new mongoose.Schema({
     }
 })
 
-//create custom methods
+
+
 userSchema.method('setPassword', function(password){
     // this.salt = crypto.randomBytes(16).toString('hex');
     // this.password = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');

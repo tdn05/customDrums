@@ -10,10 +10,11 @@ const bearerToken = require('express-bearer-token');
 const expressValidator = require('express-validator');
 
 import routes from './routes/index';
-import users from './routes/users';
 import userRoute from './routes/userRoute';
-import drumRoute from './routes/drumRoute';
 import instrumentRoute from './routes/instrumentRoute';
+import brandRoute from './routes/brandRoute';
+import customDrumRoute from './routes/customDrumRoute';
+import reviewRoute from './routes/reviewRoute';
 
 let app = express();
 import Database from './db';
@@ -40,11 +41,11 @@ app.use('/ngApp', express.static(path.join(__dirname, 'ngApp')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/api/users', userRoute);
-app.use('/api/drums', drumRoute);
-app.use('/api/instruments', instrumentRoute); 
-
+app.use('/api/instruments', instrumentRoute);
+app.use('/api/brands', brandRoute);
+app.use('/api/customDrums', customDrumRoute);
+app.use('/api/reviews', reviewRoute);
 
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {

@@ -2,16 +2,16 @@ import * as mongoose from 'mongoose';
 import * as Review from './review';
 import * as Rating from './rating';
 
-
-interface IInstrument extends mongoose.Document{
+export interface IInstrument extends mongoose.Document {
     instrument: string;
     brand: string;
-    make: string,
+    make: string;
     fullDescription: string;
     imgUrl: string;
-    price: number;
+    price:string;
+    sampleVid:string;
+    reviews: Review.IReview[];
     rating: Rating.IRating[];
-    review: Review.IReview[];
 }
 
 let instrumentSchema = new mongoose.Schema ({
@@ -39,14 +39,18 @@ let instrumentSchema = new mongoose.Schema ({
         type: Number,
         required: true,
     },
-    rating: [{
+    sampleVid: {
+        type: String,
+        required: true,
+    },
+    reviews:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }],
+    rating: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rating'
-    }],
-    reviews: [{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: 'Review'
-    }]
-})
+    },
+});
 
-export default mongoose.model<IInstrument>('Instrument', instrumentSchema)
+export default mongoose.model<IInstrument>('Instrument', instrumentSchema);

@@ -3,17 +3,18 @@ import * as passport from 'passport';
 import * as passportLocal from 'passport-local';
 import * as jwt from 'jsonwebtoken';
 import User from '../models/user';
+import CustomDrum from '../models/customDrum';
 
 let userRouter = express.Router();
 
 let LocalStrategy = passportLocal.Strategy;
 
-passport.serializeUser((user, done)=>{
+passport.serializeUser(function(user, done){
     done(null, user.id);
-});
+})
 
-passport.deserializeUser((id, done)=>{
-    User.findById(id,(err, user)=>{
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user) {
         done(err, user);
     });
 });
@@ -40,16 +41,10 @@ passport.use(new LocalStrategy(function (username, password, done){
     })
 }))
 
-
-//read individual user
-userRouter.get('/:id', (req,res)=>{
-    User.findById(req.params['id'])
-    .then((user)=>{
-        res.send(user);
-    }).catch((err)=>{
-        res.status(500).send({err:err});
-    })
-})
+/* GET users listing. */
+userRouter.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
 
 // Register
 userRouter.post('/register', register,  passport.authenticate('local', {failureRedirect: '/login'}), login);
@@ -82,6 +77,22 @@ function register(req,res,next){
 
         })
     }
+
+    function login(req,res){
+        if(req.isAuthenticated()){
+            let data ={
+                token: req.user.generateToken(),
+                username: req.user.username,
+                admin: req.user.admin,
+                email: req.user.email,
+            }
+
+            console.log(data);
+            res.send(data);
+
+        }
+    }
+
 }
 
 userRouter.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), login);
@@ -91,13 +102,33 @@ function login(req,res){
         let data ={
             token: req.user.generateToken(),
             username: req.user.username,
-            admin: req.user.admin
+            admin: req.user.admin,
+            email: req.user.email,
         }
+
+        console.log(data);
         res.send(data);
+
     } else {
         res.send('you are not authenticated')
     }
+
 }
 
+
+
+function authorize(req, res, next){
+    let token = req['token'];
+
+    jwt.verify(token, 'SuperSecret', function(err,decoded){
+        if(err){
+            res.sendStatus(401)
+        } else {
+            req.user = decoded;
+            console.log(decoded);
+            next();
+        }
+    })
+}
 
 export default userRouter;

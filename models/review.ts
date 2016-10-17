@@ -1,14 +1,21 @@
 import * as mongoose from 'mongoose';
+import User from './user';
+
 
 export interface IReview extends mongoose.Document {
     userId: string,
+    username: string,
     message: string,
     timeCreate: Date,
-    votes: number,
+    rating: number,
 }
 
 let reviewSchema = new mongoose.Schema ({
     userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    username: {
         type: String,
         required: true,
     },
@@ -18,12 +25,12 @@ let reviewSchema = new mongoose.Schema ({
     },
     timeCreate: {
         type: Date,
-        required: true
+        required: true,
     },
-    votes: {
+    rating: {
         type: Number,
-        required: true
+        required: false,
     }
-})
+});
 
 export default mongoose.model<IReview>('Review', reviewSchema);

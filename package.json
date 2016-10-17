@@ -24,6 +24,7 @@
     "@types/passport": "^0.2.31",
     "@types/passport-local": "^1.0.29",
     "@types/serve-favicon": "^2.2.27",
+    "angular-youtube-embed": "^1.3.0",
     "bcrypt": "0.8.6",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",

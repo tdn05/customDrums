@@ -1,0 +1,119 @@
+<div class="col-md-10 col-md-offset-1">
+
+            <h2>{{vm.instrument.make}}</h2>
+
+            <a href="/editInstrument/{{vm.instrument._id}}" class="editButton">Edit Instrument</a>
+            <img src="{{vm.instrument.imgUrl}}" width='1175px'alt="" />
+            <hr>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4>{{vm.instrument.brand}}: {{vm.instrument.make}}</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <span style='text-align: right'><button type="button" ng-click='vm.getSampleVid(vm.instrument._id)' class='btn btn-default'>Watch Sample Video</button></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h5>Features</h5>
+                            <p>
+                                {{vm.instrument.fullDescription}}
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5>Rating</h5>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <h4>Reviews</h4>
+        <ul>
+
+        </ul>
+
+    <div class="well well-lg" id="reviews">
+        <div class="row" ng-repeat='r in vm.instrument.reviews' id="review">
+            <div class="col-md-2">
+                <p>
+                    <a href="#">{{r.username}}</a>
+                </p>
+                <p>
+                    {{r.timeCreate | timeAgo:'MM/dd/yyyy'}}
+                </p>
+                <p>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="vm.deleteReview(r._id)"name="button">Delete</button>
+                </p>
+            </div>
+            <div class="col-md-9" id="reviewMessage">
+                <p>
+                    {{r.message}}
+                </p>
+            </div>
+            <div class="col-md-1">
+                <p>
+                    upvote
+                </p>
+                <p style="text-align: center">
+                    {{r.rating}}
+                </p>
+                <p>
+                    downvote
+                </p>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+    <div class="container-fluid">
+        <form class="form-horizontal" ng-submit='vm.saveReview(vm.instrument._id)'>
+            <fieldset>
+                <legend>Write a Review as <a href="#" ng-model='vm.review.userId'>{{vm.username}}</a></legend>
+                <div class="form-group">
+                    <label for="" class='col-md-2 control-label'>Review</label>
+                    <div class="col-md-10">
+                        <textarea name="name" class='form-control'rows="8" cols="40"
+                        placeholder='Write your review here...'
+                        ng-model='vm.review.message'></textarea>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="" class='col-md-2 control-label'>Review</label>
+                    <div class="col-md-10">
+                        <textarea name="name" class='form-control'rows="8" cols="40"
+                        placeholder='Write your review here...'
+                        ng-model='vm.review.userId'></textarea>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label for="" class='col-md-2 control-label'>Rating</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button type="button" class='btn btn-danger'name="button">Cancel</button>
+                        <button type="submit" class='btn btn-success'name="button">Save</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

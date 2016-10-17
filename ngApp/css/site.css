@@ -3,17 +3,27 @@
 
     /*background picture*/
 body.mainIndex {
-    background-image: url('https://images.alphacoders.com/106/106181.jpg');
+    /*background-image: url('https://images.alphacoders.com/106/106181.jpg');*/
     background-size: cover;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 
+.logo{
+    margin-top: -8px;
+    height: 40px;
+    border-radius: 22px;
+}
+/*Customize the navigation bar*/
+ . navbar-default{
+     bord
+ }
     /*Customization of the home header*/
 .homeHeader {
     padding-top: 85px;
-    padding-left: 15px;
+    padding-left: 20px;
     font-size: 68px;
     opacity: .6;
+    text-shadow: 4px 2px 2px rgba(150, 150, 150, 1);
 }
 
 a.homeLink{
@@ -35,4 +45,64 @@ a.homeLink::before{
 a.homeLink:hover::before, a.homeLink:focus::before {
     transform: scale(0.9);
 	opacity: 0;
+}
+
+/*LOGIN AND REGISTER*/
+.login {
+    background-color: #3f3f3f;
+    margin-top: 15px;
+    padding-left: 42px;
+    padding-right: 42px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    border-radius: 5px;
+}
+
+.loginLine {
+    border-top: 1px solid #a9a9a9;
+}
+
+.register {
+    background-color: #3f3f3f;
+    margin-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+/*DETAILS PAGE*/
+#detailModal {
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.modal-title{
+    padding-left: 20px;
+}
+
+#reviews {
+    padding-top: 25px;
+    margin-bottom: 100px;
+}
+
+#review{
+    padding-top: 25px;
+    padding-bottom: 30px;
+}
+
+#reviewMessage{
+    background-color: #e8d9c5;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+a.editButton:hover{
+    text-decoration: none;
+}
+
+a.editButton:active, a.editButton:focus {
+    color: white;
 }

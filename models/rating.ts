@@ -1,8 +1,9 @@
 import * as mongoose from 'mongoose';
+import * as User from './user';
 
 export interface IRating extends mongoose.Document {
     rating: number,
-    userId: string,
+    user: User.IUser,
 }
 
 let ratingSchema = new mongoose.Schema ({
@@ -10,7 +11,7 @@ let ratingSchema = new mongoose.Schema ({
         type: Number,
         required: true,
     },
-    userId: {
+    user: {
         type: String,
         required: false,
     }

@@ -1,0 +1,28 @@
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li ng-repeat='b in vm.brands' id="drum{{b.brand}}">
+            <a href="#{{b.brand}}" data-toggle="tab" ng-click='vm.getTab(b.brand)'>{{b.brand}}</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div ng-repeat='b in vm.brands | filter:{brand:vm.newBrand}'>
+            <div class="tab-pane fade in active" id="{{b.brand}}">
+                <div class="containter">
+                    <div class="row">
+                            <div class="col-md-4" ng-repeat='i in b.instrument'>
+                                    <img ng-src="{{i.imgUrl}}" class='img img-rounded'
+                                    height='220px' width='350px'alt=""
+                                    ng-Click='vm.getBrandDetails(i._id)'/>
+                                    <div class="caption">
+                                        <h4>{{i.make}}</h4>
+                                        <p>
+                                            {{i.price | currency}}
+                                        </p>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

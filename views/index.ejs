@@ -5,17 +5,47 @@
   <title>creativedrums</title>
   <meta charset="utf-8">
   <base href="/" />
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-D9XILkoivXN+bcvB2kSOowkIvIcBbNdoDQvfBNsxYAIieZbx8/SI4NeUvrRGCpDi" crossorigin="anonymous">
   <link rel="stylesheet" href="/ngApp/css/site.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://use.fontawesome.com/9983e60038.js"></script>
 </head>
 
 <body class='mainIndex'>
-  <div class="container">
+  <div class="">
+      <nav class="navbar  navbar-default">
+          <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img class='logo' min-height='200px'src="https://c1.staticflickr.com/3/2633/3717131933_88a7bcbe83_b.jpg" alt="" /></a>
+            </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="/brand">Drums <span class="sr-only">(current)</span></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-controller='navBarController as vm'>
+                  <li ng-show='vm.getUsername()'><a href="#" ng-click='vm.logout()'>Logout</a></li>
+                  <li class="active" ng-show='vm.getUsername()'><a href="/account"><button type="button" class="btn btn-sm btn-info"name="button"><i class="fa fa-user" aria-hidden="true"></i> User</button> <span class="badge"></span></a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+      </nav>
+
 
 
 
         <ui-view></ui-view>
+
+
   </div>
 
   <script src="/bower_components/angular/angular.min.js"></script>
@@ -24,13 +54,30 @@
   <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
   <script src="/bower_components/angular-touch/angular-touch.min.js"></script>
   <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js"></script>
+  <script src="/bower_components/angular-timeago/dist/angular-timeago.js" charset="utf-8"></script>
 
   <script src="/ngApp/app.js"></script>
   <!-- controllers -->
   <script src="/ngApp/controllers/controllers.js"></script>
+  <script src="/ngApp/controllers/navBarController.js" charset="utf-8"></script>
   <script src="/ngApp/controllers/instrumentController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/loginController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/registerController.js" charset="utf-8"></script>
+  <script src="ngApp/controllers/brandController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/brandDetailsController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/instrumentDetailsController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/sampleVidController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/userController.js" charset="utf-8"></script>
+  <script src="/ngApp/controllers/editInstrumentController.js" charset="utf-8"></script>
+  <!-- servicex -->
+  <script src="/ngApp/services/loginService.js" charset="utf-8"></script>
   <script src="/ngApp/services/services.js"></script>
+  <script src="/ngApp/services/registerService.js" charset="utf-8"></script>
   <script src="/ngApp/services/instrumentService.js" charset="utf-8"></script>
+  <script src="/ngApp/services/brandService.js" charset="utf-8"></script>
+  <script src="/ngApp/services/customDrumService.js" charset="utf-8"></script>
+  <script src="/ngApp/services/reviewService.js" charset="utf-8"></script>
 </body>
 
 </html>

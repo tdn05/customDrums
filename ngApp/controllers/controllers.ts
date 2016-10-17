@@ -1,7 +1,17 @@
 namespace creativedrums.Controllers {
 
     export class HomeController {
-        public message = 'Hello from the home page!';
+
+
+        removeImage(){
+            let x = document.querySelector('body');
+            x.setAttribute('class', '');
+        }
+
+        setImage(){
+            let x = document.querySelector('body');
+            x.setAttribute('class', 'mainIndex')
+        }
     }
 
 

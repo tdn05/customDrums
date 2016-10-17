@@ -1,0 +1,38 @@
+    <div class="modal-title">
+        <h3>{{vm.instrument.brand}}</h3>
+        <h5>{{vm.instrument.make}}</h5>
+    </div>
+
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-8">
+                <img ng-src="{{vm.instrument.imgUrl}}" id='detailModal'class='img img-rounded'width='575px' height='400px'alt="" />
+            </div>
+            <div class="col-md-4">
+
+                <hr>
+                <h6>Rating</h6>
+                    <p>
+                        {{vm.instrument.rating}}
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                <h6>Features:</h6>
+                <p>
+                    {{vm.instrument.fullDescription}}
+                </p>
+                <h6>Price</h6>
+                <p>
+                    {{vm.instrument.price | currency}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer" style='text-align:left'>
+        <button type="button" class='btn btn-primary btn-md' ng-click='vm.saveInstrument()'>Add to profile</button>
+        <button type="button" class='btn btn-success btn-md' ng-click='vm.getInstrumentDetails(vm.instrument._id)'>See full Details</button>
+    </div>
